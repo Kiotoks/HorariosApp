@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios</title>
+</head>
+<body>
+    <div class="canvas">
+        <div class="contenedor dia" > 
+            <div class="info">
+                <p id="nombreDia">dia</p>
+                <p id="fecha"></p>
+                <div class="horas">
+                    <div class="hora" id="hora0" style="border-top: #a3a5a3 1px solid;"></div>
+                    <div class="hora" id="hora1"></div>
+                    <div class="hora" id="hora2"></div>
+                    <div class="hora" id="hora3"></div>
+                    <div class="hora" id="hora4"></div>
+                    <div class="hora" id="hora5"></div>
+                    <div class="hora" id="hora6"></div>
+                    <div class="hora" id="hora7"></div>
+                    <div class="hora" id="hora8" style="border: none;"></div>
+                </div>
+                
+            </div>    
+        </div>
+        <div class="contenedor calendario">
+            <div class="mes">
+                <div class="month">
+                    
+                    <ul>
+                    <li class="prev" id="prev">&#10094;</li>
+                    <li class="next" id="next">&#10095;</li>
+                    <li id="nombreMes">Marzo</li>
+                    </ul>
+                </div>
+                
+                <ul class="weekdays">
+                    <li>D</li>
+                    <li>L</li>
+                    <li>M</li>
+                    <li>M</li>
+                    <li>J</li>
+                    <li>V</li>
+                    <li>S</li>
+                </ul>
+                
+                <div class="days" id="days">
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="app.js"></script>
+</html>

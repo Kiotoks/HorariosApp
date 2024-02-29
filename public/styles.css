@@ -1,0 +1,176 @@
+:root {
+    --practicas: #f1c64f;
+    
+    --mates: #ed6a5a;
+    
+    --tec: #5ac068;
+    
+    --sistemas: #006abc;
+    
+    --progredes: #af94dd;
+    
+    --ciudadana: #a9d9f1;
+    
+    --admin: #ff9443;
+    
+    --ingles: #FFB2E6;
+
+    --gestion: #b97361;
+}
+
+body{
+    margin: 0;
+    height: 100vh;
+    background-color: #a9d9f1;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas{
+    margin: auto;
+    display: flex;
+    flex-direction:row;
+    height: 95%;
+    width: 80%;
+    max-width: 1485px;
+    @media only screen and (max-width: 1250px) { 
+        flex-direction:column;
+        height: 100vh;
+        width: 100%;
+    }
+}
+
+.contenedor{
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.contenedor > div{
+    margin: 2EM;
+    border-radius: 50px;
+    background: #E6E8E6;
+    box-shadow:  28px 28px 52px #00000050,
+               -28px -28px 52px #ffffff50;
+    height: 100%;
+    @media only screen and (max-width: 1250px) { 
+        margin: 4%;
+    }
+}
+.calendario{
+    width: 70%;
+    @media only screen and (max-width: 1250px) { 
+        width: 100%;
+        min-height: 95vh;
+    }
+}
+.dia{
+    width: 30%;
+    @media only screen and (max-width: 1250px) { 
+        width: 100%;
+        min-height: 95vh;
+    }
+}
+
+.horas{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+p{
+    margin: auto;
+    margin: 10%;
+}
+
+
+
+.hora{
+    height:9%;
+    border-bottom: #a3a5a3 1px solid;
+    text-align: start;
+}
+
+ul {
+    list-style-type: none;
+    padding: 1%;
+}
+
+.weekdays{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    height: 1em;
+}
+.days{
+    padding: 1%;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: 11.5vh;
+    max-height: 50vh;
+    height: 100%;
+}
+
+.cell{
+    display: flex;
+    flex-direction: column;
+    align-items:start;
+    border: #a3a5a3 solid 1px;
+    border-radius: 10px;
+    height: 100%;
+}
+.cell > *{
+    margin-left: 5%;
+}
+
+.month .prev {
+    float: left;
+    padding-top: 10px;
+    padding-left: 10%;
+}
+
+.month .next {
+    float: right;
+    padding-top: 10px;
+    padding-right: 10%;
+}
+
+.noti{
+    width: 40%;
+    margin-bottom:1%;
+    height: 1em;
+    border-radius: 1em;
+}
+
+.evento{
+    color: white;
+    border-radius: 1em;
+    padding-left: 2%;
+    margin-top: 1%;
+    margin-bottom: 0;
+    margin-left: 3%;
+    @media only screen and (max-width: 1250px) { 
+        font-size:small;
+        margin-top: 0.5%;
+    }
+}
+
+.mas{
+    color: #a3a5a3;
+    height: 0.5em;
+    width: 0.5em;
+    margin-top: 0;
+}
+
+.materia{
+    text-decoration: underline;
+    margin: 3%;
+}
+
+.tiempo{
+    float: right;
+}

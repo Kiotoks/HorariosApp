@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icono.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HorariosApp</title>
+</head>
+<body>
+    <div class="canvas">
+        <div class="contenedor dia" > 
+            <div class="info">
+                <p>Cargar fecha</p>
+                <p id="fecha"></p>
+                <textarea id="nombre" rows="1" cols="30" placeholder="Nombre del evento"></textarea><br>
+                <select name="hora" id="hora">
+                    <option value="0" selected>1ra hora</option>
+                    <option value="1">2da hora</option>
+                    <option value="2">3er hora</option>
+                    <option value="3">4ta hora</option>
+                    <option value="4">5ta hora</option>
+                    <option value="5">6ta hora</option>
+                    <option value="6">7ma hora</option>
+                    <option value="7">8va hora</option>
+                    <option value="8">9na hora</option>
+                </select>
+                <select name="materia" id="materia">
+                    <option value="mates" selected>Matematica</option>
+                    <option value="progredes">Programacion sobre redes</option>
+                    <option value="practicas">Practicas profesionalizantes</option>
+                    <option value="tec">Ciencia y tecnologia</option>
+                    <option value="sistemas">Desarrollo de sistemas</option>
+                    <option value="admin">Administracion de sistemas</option>
+                    <option value="ciudadana">Formacion etica y ciudadana</option>
+                    <option value="ingles">Ingles</option>
+                    <option value="gestion">Gestion de procesos productivos</option>
+                </select>
+                <textarea id="contra" rows="1" cols="30" placeholder="Contraseña"></textarea><br>
+                <button id="cargarFecha">Cargar</button>
+                <p id="nombreDia">dia</p>
+                <div class="horas">
+                    <div class="horaS" id="hora0" style="border-top: #a3a5a3 1px solid;"></div>
+                    <div class="horaS" id="hora1"></div>
+                    <div class="horaS" id="hora2"></div>
+                    <div class="horaS" id="hora3"></div>
+                    <div class="horaS" id="hora4"></div>
+                    <div class="horaS" id="hora5"></div>
+                    <div class="horaS" id="hora6"></div>
+                    <div class="horaS" id="hora7"></div>
+                    <div class="horaS" id="hora8" style="border: none;"></div>
+                </div>
+            </div>    
+        </div>
+        <div class="contenedor calendario">
+            <div class="mes">
+                <div class="month">
+                    
+                    <ul>
+                    <li class="prev" id="prev">&#10094;</li>
+                    <li class="next" id="next">&#10095;</li>
+                    <li id="nombreMes">Marzo</li>
+                    </ul>
+                </div>
+                
+                <ul class="weekdays">
+                    <li>D</li>
+                    <li>L</li>
+                    <li>M</li>
+                    <li>M</li>
+                    <li>J</li>
+                    <li>V</li>
+                    <li>S</li>
+                </ul>
+                
+                <div class="days" id="days">
+                </div> 
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="cargarFecha.js"></script>
+</html>

@@ -92,6 +92,12 @@ p{
     text-align: start;
 }
 
+.horaS{
+    min-height:5%;
+    border-bottom: #a3a5a3 1px solid;
+    text-align: start;
+}
+
 ul {
     list-style-type: none;
     padding: 1%;

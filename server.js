@@ -34,6 +34,29 @@ async function getHorasDia(dia){
 
 }
 
+async function cargarFecha(nombre, hora, materia, dia, mes, year, contra){
+    try {
+        let collection = db.collection('usuarios');
+        let documents = await  collection.findOne({ contra: contra });
+        if(documents){
+            collection = db.collection('fechas');
+            let document = await collection.findOne({mes: mes, year: year, dia: dia});
+            if(document){
+                document.notis.push({nombre:nombre, color:materia, hora:hora});
+                await collection.updateOne({_id: document._id}, { $set:  {notis: document.notis}})  
+            }
+            else{
+                docu = {dia:dia, mes:mes, year:year, notis:[{nombre:nombre, color:materia, hora:hora}]}
+                collection.insertOne(docu);
+            }
+        }
+    } catch (error) {
+        console.error('Error al obtener las horas del dia:', error);
+        throw error;
+    }
+
+}
+
 async function getFechasMes(mes, year) {
     const collectionName = 'fechas';
     try {
@@ -51,10 +74,34 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/views/main.html");
 });
 
+app.get("/cargarFecha", (req, res) => {
+    let currentDate = new Date();
+    res.sendFile(__dirname + "/views/cargarFecha.html");
+});
+
 app.post('/horasDia', (req, res) => {
     let dayWeek = req.body.dayWeek;
     dayWeek = parseInt(dayWeek);
     getHorasDia(dayWeek)
+    .then(response => {
+        res.send(response);
+    })
+    .catch(error => {
+        console.error(error);
+        res.status(500).send('Error generando la respuesta.');
+    });
+});
+
+app.post('/cf', (req, res) => {
+    let nombre = req.body.nombre;
+    let hora =`${req.body.hora}` ;
+    let materia = req.body.materia;
+    let dia = `${req.body.dia}`;
+    let mes = `${req.body.mes}`;
+    let year = `${req.body.year}`;
+    let contra = req.body.contra;
+
+    cargarFecha(nombre, hora, materia, dia, mes, year, contra)
     .then(response => {
         res.send(response);
     })

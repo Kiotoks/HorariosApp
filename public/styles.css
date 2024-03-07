@@ -90,6 +90,15 @@ p{
     height:9%;
     border-bottom: #a3a5a3 1px solid;
     text-align: start;
+    position: relative;
+}
+
+.horaif{
+    position: absolute;
+    left: 80%;
+    bottom: 37%;
+    margin: 3%;
+    max-width: 25%;
 }
 
 .horaS{
@@ -175,6 +184,7 @@ ul {
 .materia{
     text-decoration: underline;
     margin: 3%;
+    max-width: 70%;
 }
 
 .tiempo{

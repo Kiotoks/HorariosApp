@@ -72,17 +72,23 @@ function diaSeleccionado( day, month, year){
         document.getElementById("fecha").innerHTML= dateString;
 
         //Rellenar cada hora con su respectiva materia
-       
+        let horasIF = ["7:30 8:10", "8:10 8:50", "9:00 9:40", "9:40 10:20", "10:30 11:10", "11:10 11:50", "12:00 12:40","12:40 13:20","13:20 14:00"];
         for (let index = 0; index < data.horas.length; index++) {
             hora =  document.getElementById(`hora${index}`);
             while (hora.firstChild) {
                 hora.removeChild(hora.firstChild);
             }
-            nomMateria = document.createElement("p");
+            let nomMateria = document.createElement("p");
+            let horaIF = document.createElement("p");
             nomMateria.innerHTML = data.horas[index];
+            horaIF.innerHTML = horasIF[index];
             nomMateria.classList.add("materia");
+            horaIF.classList.add("horaif");
             nomMateria.style.textDecorationColor = `var(--${data.materiaC[index]})`
             hora.appendChild(nomMateria)
+            if(data.horas[index] != ""){
+            hora.appendChild(horaIF);
+            }
             
         }
 
@@ -168,6 +174,7 @@ function setMes(month, year){
                 const e = element.notis[index];
                 let day = document.getElementById(element.dia);
                 let noti = document.createElement("div");
+                
                 noti.classList.add("noti");
                 noti.style.backgroundColor = `var(--${e.color})`
                 day.appendChild(noti);

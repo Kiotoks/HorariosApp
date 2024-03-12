@@ -70,13 +70,15 @@ body{
     @media only screen and (max-width: 120vh) { 
         width: 100%;
         min-height: 95vh;
+        height:  fit-content ;
     }
 }
+
 
 .horas{
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 90%;
 }
 
 p{
@@ -87,7 +89,7 @@ p{
 
 
 .hora{
-    height:9%;
+    min-height:9%;
     border-bottom: #a3a5a3 1px solid;
     text-align: start;
     position: relative;
@@ -96,8 +98,8 @@ p{
 .horaif{
     position: absolute;
     left: 80%;
-    bottom: 37%;
-    margin: 3%;
+    top: 0%;
+    margin: 1%;
     max-width: 25%;
 }
 

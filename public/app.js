@@ -13,6 +13,7 @@ let SELECTED_MONTH_DATES;
 let SELECTED_MONTH = MONTH;
 let SELECTED_YEAR = YEAR;
 let SELECTED_DAY = DAY;
+let HORAS_SEMANA = [];
 
 let currentDayOfWeek = currentDate.getDay();
 
@@ -50,68 +51,76 @@ function seleccionar(evento){
     diaSeleccionado( celdaClickeada.id, SELECTED_MONTH, SELECTED_YEAR );
 }
 
-function diaSeleccionado( day, month, year){
-    diaSemana = getDayOfWeek(year,month,day)+1
-    var requestData = {
-        dayWeek: diaSemana,
-    };
-    fetch('/horasDia', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(requestData)
-    })
-    .then(response => response.json())
-    .then(data => {
+function rellenarDia(data){
+    //Cambiar el nombre del dia y la fecha
+    document.getElementById("nombreDia").innerHTML = data.nombre;
+    let dateString = `${SELECTED_DAY}-${SELECTED_MONTH}-${SELECTED_YEAR}`; 
+    document.getElementById("fecha").innerHTML= dateString;
 
-        //Cambiar el nombre del dia y la fecha
-
-        document.getElementById("nombreDia").innerHTML = data.nombre;
-        let dateString = `${day}-${month}-${year}`; 
-        document.getElementById("fecha").innerHTML= dateString;
-
-        //Rellenar cada hora con su respectiva materia
-        let horasIF = ["7:30 8:10", "8:10 8:50", "9:00 9:40", "9:40 10:20", "10:30 11:10", "11:10 11:50", "12:00 12:40","12:40 13:20","13:20 14:00"];
-        for (let index = 0; index < data.horas.length; index++) {
-            hora =  document.getElementById(`hora${index}`);
-            while (hora.firstChild) {
-                hora.removeChild(hora.firstChild);
-            }
-            let nomMateria = document.createElement("p");
-            let horaIF = document.createElement("p");
-            nomMateria.innerHTML = data.horas[index];
-            horaIF.innerHTML = horasIF[index];
-            nomMateria.classList.add("materia");
-            horaIF.classList.add("horaif");
-            nomMateria.style.textDecorationColor = `var(--${data.materiaC[index]})`
-            hora.appendChild(nomMateria)
-            if(data.horas[index] != ""){
-            hora.appendChild(horaIF);
-            }
-            
+    //Rellenar cada hora con su respectiva materia
+    let horasIF = ["7:30 8:10", "8:10 8:50", "9:00 9:40", "9:40 10:20", "10:30 11:10", "11:10 11:50", "12:00 12:40","12:40 13:20","13:20 14:00"];
+    for (let index = 0; index < data.horas.length; index++) {
+        hora =  document.getElementById(`hora${index}`);
+        while (hora.firstChild) {
+            hora.removeChild(hora.firstChild);
         }
+        let nomMateria = document.createElement("p");
+        let horaIF = document.createElement("p");
+        nomMateria.innerHTML = data.horas[index];
+        horaIF.innerHTML = horasIF[index];
+        nomMateria.classList.add("materia");
+        horaIF.classList.add("horaif");
+        nomMateria.style.textDecorationColor = `var(--${data.materiaC[index]})`
+        hora.appendChild(nomMateria)
+        if(data.horas[index] != ""){
+        hora.appendChild(horaIF);
+        }
+        
+    }
 
-        //Crear notificaciones de eventos dentro del dia
+    //Crear notificaciones de eventos dentro del dia
 
-        SELECTED_MONTH_DATES.forEach(fecha => {
-            if (fecha.dia == day){
-                fecha.notis.forEach(noti => {
-                    hora = document.getElementById(`hora${noti.hora}`);
-                    notificacion = document.createElement("p");
-                    notificacion.innerHTML = noti.nombre;
-                    notificacion.classList.add("evento");
-                    notificacion.style.backgroundColor = `var(--${noti.color})`
-                    hora.appendChild(notificacion);
+    SELECTED_MONTH_DATES.forEach(fecha => {
+        if (fecha.dia == SELECTED_DAY){
+            fecha.notis.forEach(noti => {
+                hora = document.getElementById(`hora${noti.hora}`);
+                notificacion = document.createElement("p");
+                notificacion.innerHTML = noti.nombre;
+                notificacion.classList.add("evento");
+                notificacion.style.backgroundColor = `var(--${noti.color})`
+                hora.appendChild(notificacion);
 
-                });
-            }
-        });
-
-    })
-    .catch(error => {
-        console.error(error);
+            });
+        }
     });
+}
+
+function diaSeleccionado( day, month, year){
+    diaSemana = getDayOfWeek(year,month,day)
+    SELECTED_DAY = day;
+
+    if(HORAS_SEMANA.length > 0){
+        console.log(HORAS_SEMANA[diaSemana]);
+        rellenarDia(HORAS_SEMANA[diaSemana]);
+    }
+    else{
+        fetch('/horasDias', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            HORAS_SEMANA = data;
+            console.log(HORAS_SEMANA);
+            rellenarDia(HORAS_SEMANA[diaSemana]);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+    
 }
 
 function setMes(month, year){

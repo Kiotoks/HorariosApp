@@ -34,7 +34,7 @@ body{
     height: 95%;
     width: 80%;
     max-width: 1485px;
-    @media only screen and (max-width: 1250px) { 
+    @media only screen and (max-width: 120vh) { 
         flex-direction:column;
         height: 100vh;
         width: 100%;
@@ -54,20 +54,20 @@ body{
     box-shadow:  28px 28px 52px #00000050,
                -28px -28px 52px #ffffff50;
     height: 100%;
-    @media only screen and (max-width: 1250px) { 
+    @media only screen and (max-width: 120vh) { 
         margin: 4%;
     }
 }
 .calendario{
     width: 70%;
-    @media only screen and (max-width: 1250px) { 
+    @media only screen and (max-width: 120vh) { 
         width: 100%;
         min-height: 95vh;
     }
 }
 .dia{
     width: 30%;
-    @media only screen and (max-width: 1250px) { 
+    @media only screen and (max-width: 120vh) { 
         width: 100%;
         min-height: 95vh;
     }
@@ -168,7 +168,7 @@ ul {
     margin-top: 1%;
     margin-bottom: 0;
     margin-left: 3%;
-    @media only screen and (max-width: 1250px) { 
+    @media only screen and (max-width: 120vh) { 
         font-size:small;
         margin-top: 0.5%;
     }

@@ -22,10 +22,10 @@ const db = client.db(dbName);
 app.use(bodyParser.json());
 app.use(express.static(__dirname +'/public'));
 
-async function getHorasDia(dia){
+async function getHorasDia(){
     try {
         const collection = db.collection('horasDia');
-        const documents = await  collection.findOne({ dia: dia });
+        const documents = await collection.find().sort({ dia: 1 }).toArray();
         return documents;
     } catch (error) {
         console.error('Error al obtener las horas del dia:', error);
@@ -79,10 +79,8 @@ app.get("/cargarFecha", (req, res) => {
     res.sendFile(__dirname + "/views/cargarFecha.html");
 });
 
-app.post('/horasDia', (req, res) => {
-    let dayWeek = req.body.dayWeek;
-    dayWeek = parseInt(dayWeek);
-    getHorasDia(dayWeek)
+app.post('/horasDias', (req, res) => {
+    getHorasDia()
     .then(response => {
         res.send(response);
     })

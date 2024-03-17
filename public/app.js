@@ -163,6 +163,7 @@ function setMes(month, year){
             day.classList.add("cell");
             day.id = `${index}`;
             let number = document.createElement("p");
+            number.id = `numero${index}`;
             number.innerHTML = index;
             day.appendChild(number);
             calendar.appendChild(day);
@@ -182,20 +183,27 @@ function setMes(month, year){
             for (let index = 0; index < element.notis.length; index++) {
                 const e = element.notis[index];
                 let day = document.getElementById(element.dia);
-                let noti = document.createElement("div");
-                
-                noti.classList.add("noti");
-                noti.style.backgroundColor = `var(--${e.color})`
-                day.appendChild(noti);
 
-                if (index == 3){
-                    
-                    let mas = document.createElement("p");
-                    mas.innerHTML = "...";
-                    mas.classList.add("mas");
-                    day.appendChild(mas);
-                    break;
+                if(e.nombre == "feriado"){
+                    numero = document.getElementById(`numero${element.dia}`);
+                    numero.style.color = "#ed6a5a"
                 }
+                else{
+                    let noti = document.createElement("div");    
+                    noti.classList.add("noti");
+                    noti.style.backgroundColor = `var(--${e.color})`
+                    day.appendChild(noti);
+
+                    if (index == 3){
+                        
+                        let mas = document.createElement("p");
+                        mas.innerHTML = "...";
+                        mas.classList.add("mas");
+                        day.appendChild(mas);
+                        break;
+                    }
+                    }
+
             }
         });
 

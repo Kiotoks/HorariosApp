@@ -58,7 +58,6 @@ function cargarFecha(){
         year: SELECTED_YEAR,
     };
     
-    console.log(requestData);
     fetch('/cf', {
         method: 'POST',
         headers: {
@@ -131,7 +130,6 @@ function diaSeleccionado( day, month, year){
     SELECTED_DAY = day;
 
     if(HORAS_SEMANA.length > 0){
-        console.log(HORAS_SEMANA[diaSemana]);
         rellenarDia(HORAS_SEMANA[diaSemana]);
     }
     else{
@@ -144,7 +142,6 @@ function diaSeleccionado( day, month, year){
         .then(response => response.json())
         .then(data => {
             HORAS_SEMANA = data;
-            console.log(HORAS_SEMANA);
             rellenarDia(HORAS_SEMANA[diaSemana]);
         })
         .catch(error => {
@@ -193,6 +190,7 @@ function setMes(month, year){
             day.classList.add("cell");
             day.id = `${index}`;
             let number = document.createElement("p");
+            number.id = `numero${index}`;
             number.innerHTML = index;
             day.appendChild(number);
             calendar.appendChild(day);
@@ -212,20 +210,26 @@ function setMes(month, year){
             for (let index = 0; index < element.notis.length; index++) {
                 const e = element.notis[index];
                 let day = document.getElementById(element.dia);
-                let noti = document.createElement("div");
-                noti.classList.add("noti");
-                noti.style.backgroundColor = `var(--${e.color})`
-                day.appendChild(noti);
-
-                if (index == 3){
+                if (e.nombre == "feriado"){
+                    numero = document.getElementById(`numero${element.dia}`);
+                    numero.style.color = "#ed6a5a"
+                }
+                else{
+                    let noti = document.createElement("div");
+                    noti.classList.add("noti");
+                    noti.style.backgroundColor = `var(--${e.color})`
+                    day.appendChild(noti);
+                    if (index == 3){
                     
-                    let mas = document.createElement("p");
-                    mas.innerHTML = "...";
-                    mas.classList.add("mas");
-                    day.appendChild(mas);
-                    break;
+                        let mas = document.createElement("p");
+                        mas.innerHTML = "...";
+                        mas.classList.add("mas");
+                        day.appendChild(mas);
+                        break;
+                    }
                 }
             }
+                
         });
 
         //Setear listeners y elegir "hoy" si el mes seleccionado es el actual

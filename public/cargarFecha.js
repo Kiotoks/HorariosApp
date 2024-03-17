@@ -14,6 +14,7 @@ let SELECTED_MONTH_DATES;
 let SELECTED_MONTH = MONTH;
 let SELECTED_YEAR = YEAR;
 let SELECTED_DAY = DAY;
+let HORAS_SEMANA = [];
 
 let currentDayOfWeek = currentDate.getDay();
 
